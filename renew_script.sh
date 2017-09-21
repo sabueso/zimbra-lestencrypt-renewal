@@ -1,8 +1,15 @@
 #!/bin/bash
 
+#========TO-DO
+#-Improve echo messages with colors
+#-Fill all actions with messages
+#-Make control structures to know if last actions fails
+#-Test version of zimbra and execute with or without zimbra user zmcertmgr
+#========
+
 #Source directory
 CERTPATH='/etc/letsencrypt/live'
-DIRCERT='mail.gnubit.com'
+DIRCERT='mail.yourdomain.com'
 SOURCEDIR="$CERTPATH/$DIRCERT"
 
 #Destinatio directory
@@ -54,7 +61,7 @@ fi
 #
 
 #Test if exist in file, if not, add CA to chain
-if grep -x "$STROOT" /tmp/mail.gnubit.com/chain.pem  ;
+if grep -x "$STROOT" $TEMPDESTDIR/chain.pem  ;
 then
    #echo $TEMPDESTDIR/fullchain.pem
    echo -e "==> Existe el CA en chain.pem\n"
@@ -72,7 +79,7 @@ else
 	echo -e "==> There's no directory\n"
 fi
 
-#Verifying as zimbra user all certs
+#Verifying as zimbra user all certs (optional)
 
 su - zimbra -c "/opt/zimbra/bin/zmcertmgr verifycrt comm $TEMPDESTDIR/privkey.pem $TEMPDESTDIR/cert.pem $TEMPDESTDIR/chain.pem"
 
@@ -94,8 +101,3 @@ su - zimbra -c "/opt/zimbra/bin/zmcertmgr deploycrt comm $TEMPDESTDIR/cert.pem $
 #Start zimbra
 #su - zimbra -c "zmcontrol restart"
 
-
-#TO-DO
-#Improve echo messages with colors
-#Fill all actions with messages
-#Make control structures to know if last actions fails
