@@ -38,8 +38,7 @@ STROOT="MIIDSjCCAjKgAwIBAgIQRK+wgNajJ7qJMDmGLvhAazANBgkqhkiG9w0BAQUFADA/"
 
 
 #Stop zimbra
-
-su - zimbra -c "zmcontrol stop"
+#su - zimbra -c "zmcontrol stop"
 
 
 ##Copy the files of the cert to work on temp directory
@@ -93,8 +92,7 @@ su - zimbra -c "/opt/zimbra/bin/zmcertmgr deploycrt comm $TEMPDESTDIR/cert.pem $
 
 
 #Start zimbra
-
-su - zimbra -c "zmcontrol restart"
+#su - zimbra -c "zmcontrol restart"
 
 
 #TO-DO
