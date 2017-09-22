@@ -1,18 +1,11 @@
-#!/bin/bash
-
-#========TO-DO
-#-Improve echo messages with colors
-#-Fill all actions with messages
-#-Make control structures to know if last actions fails
-#-Test version of zimbra and execute with or without zimbra user zmcertmgr
-#========
+#!/usr/bin/env bash
 
 #Source directory
 CERTPATH='/etc/letsencrypt/live'
 DIRCERT='mail.yourdomain.com'
 SOURCEDIR="$CERTPATH/$DIRCERT"
 
-#Destinatio directory
+#Destination directory
 TEMPDIR="/tmp"
 #Temporary working directory
 TEMPDESTDIR="$TEMPDIR/$DIRCERT"
@@ -52,9 +45,9 @@ STROOT="MIIDSjCCAjKgAwIBAgIQRK+wgNajJ7qJMDmGLvhAazANBgkqhkiG9w0BAQUFADA/"
 if [ ! -d "$TEMPDESTDIR" ]; then
 	cp -vLr $SOURCEDIR $TEMPDIR
 else
-	echo -e "==> Borrando directorio...\n"
+	echo -e "==> Deleting folder...\n"
 	rm -fr "$TEMPDESTDIR"
-	echo -e "==> Copiando nueva version..."
+	echo -e "==> Coping new version..."
 	cp -vLr $SOURCEDIR $TEMPDIR
 	echo -e "\n"
 fi
@@ -64,10 +57,10 @@ fi
 if grep -x "$STROOT" $TEMPDESTDIR/chain.pem  ;
 then
    #echo $TEMPDESTDIR/fullchain.pem
-   echo -e "==> Existe el CA en chain.pem\n"
+   echo -e "==> CA exists in chain.pem\n"
    :
 else 
-   echo -e "==> No existe, insertando CA en fullchain.pem ...\n"
+   echo -e "==> Don't exist, inserting CA in fullchain.pem ...\n"
    echo "${CAR}" >> "$TEMPDESTDIR/chain.pem"
 fi
 
