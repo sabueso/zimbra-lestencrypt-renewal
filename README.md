@@ -8,7 +8,7 @@ One simply script (and improvable) to renew automatically your Let's Encrypt Cer
 
 Only edit vars to adjust to your system. The script use /tmp to add text safely and copy needed files to zimbra directory, and run all necesesarily commands.
 
-### Cront
+### Cron
 
 Edit crontab as following:
 
@@ -19,7 +19,7 @@ Edit crontab as following:
 This will try to renew your cert 2 AM. Reboot will be done only when renewal is feaceble.
 
 
-Improvements will be welcomed! ;)
+Improvements are welcome! ;)
 
 ---
 Ramiro Magallanes <sabueso@sabueso.org>
